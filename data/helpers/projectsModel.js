@@ -30,7 +30,7 @@ const getProjectsById = id => {
           description: result[0].description,
           completed: result[0].completed === 0 ? false : true,
           actions: result.map(item => ({
-            id: item.recipe,
+            id: item.id,
             description: item.description,
             notes: item.notes,
             completed: item.completed
