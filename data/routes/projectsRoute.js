@@ -28,4 +28,19 @@ route.post('/', (req, res) => {
     });
 });
 
+route.get('/:id', (req, res) => {
+  const id = req.params.id;
+  db.getProjectsById(id)
+    .then(ids => {
+      if (ids) {
+        db.res.status(200).json(ids);
+      } else {
+        res.status(404).json({ message: 'Id cannot be found' });
+      }
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = route;
