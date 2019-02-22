@@ -33,7 +33,7 @@ route.get('/:id', (req, res) => {
   db.getProjectsById(id)
     .then(ids => {
       if (ids) {
-        db.res.status(200).json(ids);
+        res.status(200).json(ids);
       } else {
         res.status(404).json({ message: 'Id cannot be found' });
       }
