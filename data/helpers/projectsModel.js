@@ -24,16 +24,18 @@ const getProjectsById = id => {
     .where('p.id', id)
     .then(result => {
       const project = {
-        id: result[0].id,
-        name: result[0].name,
-        description: result[0].description,
-        completed: result[0].completed,
-        actions: result.map(item => ({
-          id: item.recipe,
-          description: item.description,
-          notes: item.notes,
-          completed: item.completed
-        }))
+        projects: {
+          id: result[0].id,
+          name: result[0].name,
+          description: result[0].description,
+          completed: result[0].completed === 0 ? false : true,
+          actions: result.map(item => ({
+            id: item.recipe,
+            description: item.description,
+            notes: item.notes,
+            completed: item.completed
+          }))
+        }
       };
       return project;
     });
