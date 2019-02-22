@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const projectsRoute = require('./data/routes/projectsRoute');
+const actionsRoute = require('./data/routes/actionsRoute');
 
 const server = express();
 
@@ -14,5 +15,6 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/projects', projectsRoute);
+server.use('/api/actions', actionsRoute);
 
 module.exports = server;

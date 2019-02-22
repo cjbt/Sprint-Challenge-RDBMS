@@ -1,9 +1,14 @@
 const db = require('../dbConfig');
 
 const getAll = () => {
-  return db('projects');
+  return db('actions');
+};
+
+const addActions = action => {
+  return db('actions').insert(action);
 };
 
 module.exports = {
-  getAll
+  getAll,
+  addActions
 };
