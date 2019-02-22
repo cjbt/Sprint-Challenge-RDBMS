@@ -39,8 +39,22 @@ const getProjectsById = id => {
     });
 };
 
+const updateProjects = (id, changes) => {
+  return db('projects')
+    .where({ id })
+    .update(changes);
+};
+
+const deleteProjects = id => {
+  return db('projects')
+    .where({ id })
+    .del();
+};
+
 module.exports = {
   getAll,
   addProjects,
-  getProjectsById
+  getProjectsById,
+  updateProjects,
+  deleteProjects
 };

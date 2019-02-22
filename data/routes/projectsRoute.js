@@ -43,4 +43,35 @@ route.get('/:id', (req, res) => {
     });
 });
 
+route.put('/:id', (req, res) => {
+  const id = req.params.id;
+  const body = req.body;
+  if (!body.name || !body.description) {
+    res.status(404).json({ message: 'you need the fields' });
+  } else if (!id) {
+    res.status(404).json({ message: 'id not found' });
+  }
+  db.updateProjects(id, body)
+    .then(updated => {
+      res.status(200).json(updated);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+route.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  if (!id) {
+    res.status(404).json({ message: 'id not found' });
+  }
+  db.deleteProjects(id)
+    .then(deleted => {
+      res.status(200).json(deleted);
+    })
+    .catch(err => {
+      res.status(500).status(err);
+    });
+});
+
 module.exports = route;
